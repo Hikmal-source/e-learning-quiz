@@ -1,0 +1,150 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  PARTICIPANT
+}
+
+enum MaterialType {
+  GENERAL
+  LINUX_COMMAND
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(PARTICIPANT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  lessonProgress LessonProgress[]
+  quizAttempts   QuizAttempt[]
+}
+
+model Material {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  slug        String  @unique
+  description String
+  category    String
+  published   Boolean @default(false)
+  type        MaterialType @default(GENERAL)
+
+  lessons Lesson[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model LessonProgress {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  userId   String @db.ObjectId
+  lessonId String @db.ObjectId
+
+  completed   Boolean   @default(false)
+  completedAt DateTime?
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, lessonId])
+  @@index([userId])
+  @@index([lessonId])
+}
+
+model Lesson {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  materialId String @db.ObjectId
+
+  title   String
+  content Json
+  order   Int
+
+  material Material @relation(fields: [materialId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  progress LessonProgress[]
+
+  @@unique([materialId, order])
+  @@index([materialId])
+}
+
+model Question {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  question      String
+  options       String[]
+  correctAnswer Int
+  explanation   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  quizQuestions QuizQuestion[]
+}
+
+model Quiz {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String?
+  duration    Int
+  isPublished Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  questions QuizQuestion[]
+  attempts  QuizAttempt[]
+}
+
+model QuizQuestion {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  quizId     String @db.ObjectId
+  questionId String @db.ObjectId
+  order      Int
+
+  quiz     Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([quizId, questionId])
+  @@unique([quizId, order])
+  @@index([quizId])
+  @@index([questionId])
+}
+
+model QuizAttempt {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  quizId String @db.ObjectId
+
+  startedAt   DateTime
+  submittedAt DateTime?
+
+  score    Int   @default(0)
+  duration Int   @default(0)
+  answers  Json?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quiz Quiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([quizId])
+  @@index([userId, quizId])
+}

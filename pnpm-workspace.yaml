@@ -1,3 +1,6 @@
 ignoredBuiltDependencies:
+  - esbuild
+  - msgpackr-extract
   - sharp
   - unrs-resolver
+  - workerd
