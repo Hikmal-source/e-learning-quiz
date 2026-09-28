@@ -37,7 +37,7 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-background font-sans text-foreground">
         {children}
-        <SpeedInsights />
+        <SpeedInsights dsn="mqJ1jHYcKvZgNtiRHK5umg7bzyR" />
       </body>
     </html>
   );
