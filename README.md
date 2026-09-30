@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🚀 DevLearn
 
-## Getting Started
+<p align="center"> </p><h3 align="center"> Interactive Learning Platform for DevOps, Cloud, Linux & Cyber Security </h3><p align="center"> <strong>Learn. Build. Secure.</strong> </p><p align="center"> <img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js" alt="Next.js"> <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react" alt="React"> <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript" alt="TypeScript"> <img src="https://img.shields.io/badge/Prisma-6-2D3748?style=for-the-badge&logo=prisma" alt="Prisma"> <img src="https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb" alt="MongoDB"> <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss" alt="Tailwind CSS"> </p>
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+📖 About
+DevLearn adalah platform pembelajaran interaktif yang dirancang untuk membantu mahasiswa dan pemula mempelajari bidang DevOps, Cloud Computing, Linux, dan Cyber Security melalui kombinasi materi, praktik, dan evaluasi.
+
+## 📂 Project Structure
+
+```text
+devlearn/
+│
+├── app/
+│   ├── (auth)/
+│   │   ├── login/
+│   │   └── register/
+│   │
+│   ├── dashboard/
+│   │
+│   ├── admin/
+│   │
+│   ├── courses/
+│   │
+│   ├── quiz/
+│   │
+│   ├── api/
+│   │   └── ...
+│   │
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── components/
+│   ├── ui/
+│   ├── dashboard/
+│   ├── learning/
+│   └── quiz/
+│
+├── lib/
+│   ├── auth/
+│   ├── prisma/
+│   ├── validation/
+│   └── utils/
+│
+├── prisma/
+│   └── schema.prisma
+│
+├── public/
+│   ├── images/
+│   └── favicon.ico
+│
+├── docs/
+│   └── images/
+│       ├── devlearn-banner.png
+│       ├── home.png
+│       ├── dashboard.png
+│       ├── linux-learning.png
+│       ├── quiz.png
+│       └── login.png
+│
+├── .env.example
+├── next.config.ts
+├── package.json
+├── pnpm-lock.yaml
+├── tsconfig.json
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
+| Category               | Features                                                  |
+| ---------------------- | --------------------------------------------------------- |
+| 📚 **Learning**        | Structured Materials, Learning Objectives, Linux Practice |
+| 🧪 **Evaluation**      | Quiz, Timer, Learning Progress                            |
+| 👤 **User Management** | Authentication, User Profile, Admin & Participant Role    |
+| 🛡️ **Security**       | JWT Session, RBAC, Password Hashing, Input Validation     |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Application Architecture
+| Layer             | Technology                   |
+| ----------------- | ---------------------------- |
+| 🖥️ Frontend      | Next.js, React, TypeScript   |
+| 🔐 Authentication | Credentials + JWT            |
+| ⚙️ Backend        | Next.js API / Server Actions |
+| 🔷 ORM            | Prisma                       |
+| 🍃 Database       | MongoDB Atlas                |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Diagram Relasi 
+<p align="center">
+  <img src="doc/diagram.png" alt="DevLearn Linux Learning" width="900">
+</p>
 
-## Learn More
+## Security 
+| Security Area      | Implementation                   |
+| ------------------ | -------------------------------- |
+| 🔑 Authentication  | Credentials Authentication       |
+| 🎫 Session         | JWT-based Session                |
+| 🛡️ Authorization  | Role-Based Access Control (RBAC) |
+| 🔒 Password        | Password Hashing                 |
+| 🚫 Server Security | Server-side Authorization        |
+| 🧹 Validation      | Input & Server-side Validation   |
+| 🔐 Secrets         | Environment Variables            |
+| 🗄️ Database       | Prisma ORM                       |
+| 🚧 API Security    | Role-based Endpoint Protection   |
 
-To learn more about Next.js, take a look at the following resources:
+### 🏠 Landing Page
+<p align="center">
+  <img src="doc/landing.png" alt="DevLearn Landing Page" width="900">
+</p>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 📚 Learning Dashboard
+<p align="center">
+  <img src="doc/dashboard.png" alt="DevLearn Landing Page" width="900">
+</p>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+### 🐧 Linux Learning
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<p align="center">
+  <img src="doc/lesson.png" alt="DevLearn Linux Learning" width="900">
+</p>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🧪 Quiz
+<p align="center">
+  <img src="doc/quiz.png" alt="DevLearn Quiz" width="900">
+</p>
+
+## 🚀 Getting Started
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/Hikmal-source/e-learning-quiz.git
+cd devlearn
